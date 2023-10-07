@@ -36,6 +36,19 @@ install(
   RUNTIME DESTINATION bin
   INCLUDES DESTINATION include)
 
+## rigid_body_dynamics
+add_library(rigid_body_dynamics src/rigid_body_dynamics.cpp)
+target_link_libraries(rigid_body_dynamics utils Eigen3::Eigen jsoncpp)
+ament_export_targets(rigid_body_dynamics HAS_LIBRARY_TARGET)
+
+install(
+  TARGETS rigid_body_dynamics
+  EXPORT rigid_body_dynamics
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include)
+
 ############################################################################
 
 if(BUILD_TESTING)
