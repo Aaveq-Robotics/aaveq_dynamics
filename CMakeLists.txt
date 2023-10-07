@@ -23,6 +23,19 @@ install(
   DIRECTORY include/aaveq_dynamics
   DESTINATION include)
 
+## utils
+add_library(utils src/utils.cpp)
+target_link_libraries(utils Eigen3::Eigen jsoncpp)
+ament_export_targets(utils HAS_LIBRARY_TARGET)
+
+install(
+  TARGETS utils
+  EXPORT utils
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include)
+
 ############################################################################
 
 if(BUILD_TESTING)
