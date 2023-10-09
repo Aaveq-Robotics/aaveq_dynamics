@@ -15,7 +15,7 @@ namespace ADynamics
 
         Eigen::Matrix3d I;
         for (auto p : points)
-            I += p.m * inertia(p.x, p.y, p.z);
+            I += p.m() * inertia(p.x(), p.y(), p.z());
 
         return I;
     }

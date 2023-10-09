@@ -5,12 +5,11 @@
 
 namespace ADynamics
 {
-    struct PointMass
+    // Add .m() accesser to Eigen::Vector4d, equivalent to operator[](3)
+    class PointMass : public Eigen::Vector4d
     {
-        double m;
-        double x;
-        double y;
-        double z;
+    public:
+        double m() const { return (*this)[3]; }
     };
 
     Eigen::Matrix3d inertia_matrix(const std::vector<PointMass> &points);
