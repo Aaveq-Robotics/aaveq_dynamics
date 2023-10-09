@@ -23,6 +23,20 @@ install(
   DIRECTORY include/aaveq_dynamics
   DESTINATION include)
 
+## Master include
+add_library(adynamics INTERFACE)
+ament_export_targets(export_adynamics HAS_LIBRARY_TARGET)
+
+install(
+    TARGETS adynamics
+    EXPORT export_adynamics
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin
+    INCLUDES DESTINATION include
+)
+ament_export_include_directories(include)
+
 ## utils
 add_library(utils src/utils.cpp)
 target_link_libraries(utils Eigen3::Eigen jsoncpp)
