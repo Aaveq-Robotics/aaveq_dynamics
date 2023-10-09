@@ -56,21 +56,17 @@ namespace ADynamics
         return J_Theta;
     }
 
-    void rigid_body_dynamics(double timestep,
-                             const Eigen::Vector<double, 6> &tau,
-                             const Eigen::Vector<double, 6> &state_body,
-                             const Eigen::Vector<double, 6> &state_earth,
-                             const double &mass,
-                             const Eigen::Matrix3d &inertia_matrix,
-                             const Eigen::Matrix<double, 6, 6> &mass_matrix)
+    ADynamics::tubleStates rigid_body_dynamics(double timestep,
+                                               const Eigen::Vector<double, 6> &tau,
+                                               const Eigen::Vector<double, 6> &state_body,
+                                               const Eigen::Vector<double, 6> &state_earth,
+                                               const double &mass,
+                                               const Eigen::Matrix3d &inertia_matrix,
+                                               const Eigen::Matrix<double, 6, 6> &mass_matrix)
 
     {
         Eigen::Vector<double, 6> nu = state_body;
         Eigen::Vector<double, 6> eta = state_earth;
-
-        // Check time
-        if (timestep < 0.0)
-            return;
 
         // Rigid body dynamics
         Eigen::Vector<double, 6> nu_dot = matrix_inverse(mass_matrix) * tau - matrix_inverse(mass_matrix) * coriolis_matrix(mass, inertia_matrix, nu) * nu;
@@ -78,11 +74,11 @@ namespace ADynamics
         nu += nu_dot;
 
         // Body-fixed frame to earth-fixed frame
-        Eigen::Vector<double, 6> etadot = J_Theta(eta) * nu;
-        etadot *= timestep;
-        eta += etadot;
+        Eigen::Vector<double, 6> eta_dot = J_Theta(eta) * nu;
+        eta_dot *= timestep;
+        eta += eta_dot;
 
-        // TODO: return nu and eta
+        return std::make_tuple(nu, nu_dot, eta, eta_dot);
     }
 
 } // namespace ADynamics

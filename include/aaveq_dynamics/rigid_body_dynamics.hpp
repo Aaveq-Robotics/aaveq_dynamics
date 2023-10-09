@@ -22,11 +22,14 @@ namespace ADynamics
 
     Eigen::Matrix<double, 6, 6> J_Theta(const Eigen::Vector<double, 6> &eta);
 
-    void rigid_body_dynamics(double timestep,
-                             const Eigen::Vector<double, 6> &tau,
-                             const Eigen::Matrix<double, 6, 6> &mass_matrix,
-                             const Eigen::Vector<double, 6> &state_body,
-                             const Eigen::Vector<double, 6> &state_earth);
+    typedef std::tuple<Eigen::Vector<double, 6>, Eigen::Vector<double, 6>, Eigen::Vector<double, 6>, Eigen::Vector<double, 6>> tubleStates;
+    tubleStates rigid_body_dynamics(double timestep,
+                                    const Eigen::Vector<double, 6> &tau,
+                                    const Eigen::Vector<double, 6> &state_body,
+                                    const Eigen::Vector<double, 6> &state_earth,
+                                    const double &mass,
+                                    const Eigen::Matrix3d &inertia_matrix,
+                                    const Eigen::Matrix<double, 6, 6> &mass_matrix);
 
 } // namespace ADynamics
 
