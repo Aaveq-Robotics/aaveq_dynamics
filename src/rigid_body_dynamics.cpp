@@ -71,13 +71,11 @@ namespace ADynamics
 
         // Rigid body dynamics
         Eigen::Vector<double, 6> nu_dot = matrix_inverse(mass_matrix) * tau - matrix_inverse(mass_matrix) * coriolis_matrix(mass, inertia_matrix, nu) * nu;
-        nu_dot *= timestep;
-        nu += nu_dot;
+        nu += nu_dot * timestep;
 
         // Body-fixed frame to earth-fixed frame
         Eigen::Vector<double, 6> eta_dot = J_Theta(eta) * nu;
-        eta_dot *= timestep;
-        eta += eta_dot;
+        eta += eta_dot * timestep;
 
         return std::make_tuple(nu, nu_dot, eta, eta_dot);
     }
