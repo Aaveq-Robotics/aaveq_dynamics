@@ -63,6 +63,19 @@ install(
   RUNTIME DESTINATION bin
   INCLUDES DESTINATION include)
 
+## forces
+add_library(forces src/forces.cpp)
+target_link_libraries(forces Eigen3::Eigen)
+ament_export_targets(forces HAS_LIBRARY_TARGET)
+
+install(
+  TARGETS forces
+  EXPORT forces
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include)
+
 ############################################################################
 
 if(BUILD_TESTING)
