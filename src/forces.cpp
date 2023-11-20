@@ -1,6 +1,6 @@
-#include <iostream>
-
 #include "aaveq_dynamics/forces.hpp"
+
+#include <iostream>
 
 namespace ADynamics
 {
