@@ -4,7 +4,7 @@
   <name>aaveq_dynamics</name>
   <version>0.0.0</version>
   <description>Collection of physics based functions, like computation of drag and rigid body dynamics.</description>
-  <maintainer>Nicoline L. Thomsen</maintainer>
+  <maintainer email="todo@todo.dk">Nicoline L. Thomsen</maintainer>
   <license>TODO: license</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
